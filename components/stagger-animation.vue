@@ -1,10 +1,16 @@
-<!-- <script setup>
-const text = `We work in many different ways depending on the client, project and budget. We work in teams and try to involve everybody all the way. We like projects to be short and intense even if it’s not always a possibility.We have a sprint based process framework called “The Involver” which we apply on all projects.We work in many different ways depending on the client, project and budget. We work in teams and try to involve everybody all the way. `
+<script setup>
+const props = defineProps({
+  data: String,
+  progress: String,
+})
 
+const data = toRef(props, 'data')
+const progress = toRef(props, 'progress')
 const textRef = ref(null)
 
 const lineAmount = ref(0)
 const lineHeight = ref(0)
+const fontSize = ref(0)
 
 const linear = t => t
 const easeInQuad = t => t * t
@@ -40,18 +46,17 @@ const between = (progress, { easing, time: [min, max] }) => {
 
 watch(textRef, () => {
   if (!textRef.value) return
+  textRef.value.querySelectorAll(':scope > *').forEach(el => {
+    const { height } = el.getBoundingClientRect()
+    const { fontSize: fs, lineHeight: lh } = getComputedStyle(el)
 
-  const { height } = textRef.value.getBoundingClientRect()
-  const { fontSize, lineHeight: lh } = getComputedStyle(textRef.value)
+    fontSize.value = fs
 
-  lineHeight.value = parseFloat(lh) / parseFloat(fontSize)
+    lineHeight.value = parseFloat(lh) / parseFloat(fs)
 
-  lineAmount.value = Math.round(height / parseFloat(lh))
+    lineAmount.value = Math.round(height / parseFloat(lh))
+  })
 })
-
-const progress = ref(0)
-
-const staggerValue = 10
 
 const getStaggeredProgress = idx => {
   const section = 1 / lineAmount.value
@@ -95,48 +100,34 @@ const updateProgress = () => {
   progress.value = Math.min(progress.value + 0.001, 1)
   requestAnimationFrame(updateProgress)
 }
-
-const incrementProgress = () => {
-  const incrementAmount = 0.001
-  progress.value += incrementAmount
-  if (progress.value >= 1) {
-    clearInterval(progressInterval)
-    progress.value = 1
-  }
-}
-
-const progressInterval = setInterval(incrementProgress, 1)
 </script>
 
 <template>
   <div>
-    <input type="range" min="0" max="1" step="0.001" v-model="progress" />
-
-    <p>{{ progress }}</p>
-
     <div class="container">
-      <p
+      <div
         class="real"
         ref="textRef"
         :style="{ opacity: progress !== '1' ? 0 : null }"
-      >
-        {{ text }}
-      </p>
+        v-html="data"
+      ></div>
 
-      <p
+      <div
         v-if="progress !== '0' && progress !== '1'"
+        class="mask"
         :style="{
           position: 'absolute',
           top: 0,
           margin: 0,
           ...getMask(idx),
           ...getTransform(idx),
+          fontSize: fontSize,
+          lineHeight: lineHeight,
         }"
         :key="line"
         v-for="(line, idx) in lineAmount"
-      >
-        {{ text }}
-      </p>
+        v-html="data"
+      ></div>
     </div>
   </div>
 </template>
@@ -148,31 +139,6 @@ input {
 
 .container {
   position: relative;
-}
-
-p {
   max-width: 20em;
-  font-size: 26px;
-  line-height: 1.4;
 }
 </style>
- -->
-<script setup>
-const data = ref(
-  '<h2 class="ts-label-m">New site after a decade</h2><p class="ts-body-xl">One of the defining aspects of our agency is our optimal team size. We have discovered that maintaining a compact team of between 15 and 20 members allows us to achieve the best results for our clients and ourselves. By deliberately keeping our team size within this range, we ensure efficient collaboration, open communication, and seamless coordination.</p>'
-)
-const elements = computed(() => {
-  const tempDiv = document.createElement('div')
-  tempDiv.innerHTML = data.value
-  return Array.from(tempDiv.childNodes)
-})
-const progress = ref(0)
-</script>
-<template>
-  <input type="range" min="0" max="1" step="0.001" v-model="progress" />
-  <div v-for="(element, index) in elements" :key="index">
-    <stagger-animation :data="element.outerHTML" :progress="progress" />
-  </div>
-</template>
-
-<style></style>

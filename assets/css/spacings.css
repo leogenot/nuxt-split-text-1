@@ -1,0 +1,262 @@
+:root {
+  --mt: 0px;
+  --mb: 0px;
+  --pt: 0px;
+  --pb: 0px;
+}
+
+[class*='mt-'] {
+  margin-top: var(--mt);
+}
+
+[class*='mb-'] {
+  margin-bottom: var(--mb);
+}
+
+[class*='pt-'] {
+  padding-top: var(--pt);
+}
+
+[class*='pb-'] {
+  padding-bottom: var(--pb);
+}
+
+.mt-1 {
+  --mt: units(1);
+}
+
+.mt-2 {
+  --mt: units(2);
+}
+
+.mt-3 {
+  --mt: units(3);
+}
+
+.mt-4 {
+  --mt: units(4);
+}
+
+.mt-5 {
+  --mt: units(5);
+}
+
+.mt-6 {
+  --mt: units(6);
+}
+
+.mt-7 {
+  --mt: units(7);
+}
+
+.mt-8 {
+  --mt: units(8);
+}
+
+.mt-9 {
+  --mt: units(9);
+}
+
+.mt-10 {
+  --mt: units(10);
+}
+
+.mt-11 {
+  --mt: units(11);
+}
+
+.mt-12 {
+  --mt: units(12);
+}
+
+.mt-13 {
+  --mt: units(13);
+}
+
+.mt-14 {
+  --mt: units(14);
+}
+
+.mt-15 {
+  --mt: units(15);
+}
+
+.pt-1 {
+  --pt: units(1);
+}
+
+.pt-2 {
+  --pt: units(2);
+}
+
+.pt-3 {
+  --pt: units(3);
+}
+
+.pt-4 {
+  --pt: units(4);
+}
+
+.pt-5 {
+  --pt: units(5);
+}
+
+.pt-6 {
+  --pt: units(6);
+}
+
+.pt-7 {
+  --pt: units(7);
+}
+
+.pt-8 {
+  --pt: units(8);
+}
+
+.pt-9 {
+  --pt: units(9);
+}
+
+.pt-10 {
+  --pt: units(10);
+}
+
+.pt-11 {
+  --pt: units(11);
+}
+
+.pt-12 {
+  --pt: units(12);
+}
+
+.pt-13 {
+  --pt: units(13);
+}
+
+.pt-14 {
+  --pt: units(14);
+}
+
+.pt-15 {
+  --pt: units(15);
+}
+
+.mb-1 {
+  --mb: units(1);
+}
+
+.mb-2 {
+  --mb: units(2);
+}
+
+.mb-3 {
+  --mb: units(3);
+}
+
+.mb-4 {
+  --mb: units(4);
+}
+
+.mb-5 {
+  --mb: units(5);
+}
+
+.mb-6 {
+  --mb: units(6);
+}
+
+.mb-7 {
+  --mb: units(7);
+}
+
+.mb-8 {
+  --mb: units(8);
+}
+
+.mb-9 {
+  --mb: units(9);
+}
+
+.mb-10 {
+  --mb: units(10);
+}
+
+.mb-11 {
+  --mb: units(11);
+}
+
+.mb-12 {
+  --mb: units(12);
+}
+
+.mb-13 {
+  --mb: units(13);
+}
+
+.mb-14 {
+  --mb: units(14);
+}
+
+.mb-15 {
+  --mb: units(15);
+}
+
+.pb-1 {
+  --pb: units(1);
+}
+
+.pb-2 {
+  --pb: units(2);
+}
+
+.pb-3 {
+  --pb: units(3);
+}
+
+.pb-4 {
+  --pb: units(4);
+}
+
+.pb-5 {
+  --pb: units(5);
+}
+
+.pb-6 {
+  --pb: units(6);
+}
+
+.pb-7 {
+  --pb: units(7);
+}
+
+.pb-8 {
+  --pb: units(8);
+}
+
+.pb-9 {
+  --pb: units(9);
+}
+
+.pb-10 {
+  --pb: units(10);
+}
+
+.pb-11 {
+  --pb: units(11);
+}
+
+.pb-12 {
+  --pb: units(12);
+}
+
+.pb-13 {
+  --pb: units(13);
+}
+
+.pb-14 {
+  --pb: units(14);
+}
+
+.pb-15 {
+  --pb: units(15);
+}
