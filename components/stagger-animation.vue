@@ -1,10 +1,10 @@
 <script setup>
 const props = defineProps({
   data: String,
-  progress: String,
+  start: Boolean,
 })
 const data = toRef(props, 'data')
-const progress = toRef(props, 'progress')
+const progress = ref(0)
 const textRef = ref(null)
 
 const lineAmount = ref(0)
@@ -62,6 +62,17 @@ const getTransform = idx => {
     }em`,
   }
 }
+
+watch(
+  () => props.start,
+  () => {
+    if (props.start) {
+      useRafFn(() => {
+        progress.value = parseFloat(progress.value) + 0.01
+      })
+    }
+  }
+)
 </script>
 
 <template>
@@ -94,13 +105,4 @@ const getTransform = idx => {
   </div>
 </template>
 
-<style>
-input {
-  margin-bottom: 30px;
-}
-
-.container {
-  position: relative;
-  max-width: 20em;
-}
-</style>
+<style></style>

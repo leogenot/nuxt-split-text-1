@@ -8,12 +8,36 @@ const elements = computed(() => {
   return Array.from(tempDiv.childNodes)
 })
 const progress = ref(0)
+
+const target = ref(null)
+const targetIsVisible = ref(false)
+
+const { stop } = useIntersectionObserver(
+  target,
+  ([{ isIntersecting }], observerElement) => {
+    targetIsVisible.value = isIntersecting
+    console.log(isIntersecting)
+  }
+)
 </script>
 <template>
-  <input type="range" min="0" max="1" step="0.001" v-model="progress" />
-  <div v-for="(element, index) in elements" :key="index">
-    <stagger-animation :data="element.outerHTML" :progress="progress" />
+  <!-- <input type="range" min="0" max="1" step="0.001" v-model="progress" /> -->
+  <div class="rte" ref="target">
+    <div v-for="(element, index) in elements" :key="index">
+      <stagger-animation :data="element.outerHTML" :start="targetIsVisible" />
+    </div>
   </div>
 </template>
 
-<style></style>
+<style>
+body {
+  height: 300vh;
+}
+
+.rte {
+  top: 150vh;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+</style>
