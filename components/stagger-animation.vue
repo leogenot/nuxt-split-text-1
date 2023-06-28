@@ -3,7 +3,6 @@ const props = defineProps({
   data: String,
   progress: String,
 })
-
 const data = toRef(props, 'data')
 const progress = toRef(props, 'progress')
 const textRef = ref(null)
@@ -11,38 +10,6 @@ const textRef = ref(null)
 const lineAmount = ref(0)
 const lineHeight = ref(0)
 const fontSize = ref(0)
-
-const linear = t => t
-const easeInQuad = t => t * t
-const easeOutQuad = t => t * (2 - t)
-const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
-const easeInCubic = t => t * t * t
-const easeOutCubic = t => --t * t * t + 1
-const easeInOutCubic = t =>
-  t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
-const easeInQuart = t => t * t * t * t
-const easeOutQuart = t => 1 - --t * t * t * t
-const easeInOutQuart = t =>
-  t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t
-const easeInQuint = t => t * t * t * t * t
-const easeOutQuint = t => 1 + --t * t * t * t * t
-const easeInOutQuint = t =>
-  t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t
-
-// same as https://processing.org/reference/map_.html
-// ex: reMap(1, 0, 5) -> 0.2
-const remap = (value, low1, high1, low2 = 0, high2 = 1) => {
-  return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1)
-}
-
-const between = (progress, { easing, time: [min, max] }) => {
-  // remaps min-max to 0-1
-  const progressValue = unref(progress)
-  if (min >= progressValue) return 0
-  if (max <= progressValue) return 1
-
-  return easing(remap(progressValue, min, max))
-}
 
 watch(textRef, () => {
   if (!textRef.value) return
@@ -94,11 +61,6 @@ const getTransform = idx => {
       -lineHeight.value + getStaggeredProgress(idx) * lineHeight.value
     }em`,
   }
-}
-
-const updateProgress = () => {
-  progress.value = Math.min(progress.value + 0.001, 1)
-  requestAnimationFrame(updateProgress)
 }
 </script>
 
