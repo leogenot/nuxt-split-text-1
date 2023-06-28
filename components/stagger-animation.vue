@@ -67,8 +67,14 @@ watch(
   () => props.start,
   () => {
     if (props.start) {
-      useRafFn(() => {
+      const { pause } = useRafFn(() => {
         progress.value = parseFloat(progress.value) + 0.01
+        if (progress.value >= 1) {
+          pause()
+          progress.value = 1
+          return
+        }
+        console.log(progress.value)
       })
     }
   }
