@@ -2,6 +2,9 @@
 const data = ref(
   '<h2 class="ts-label-m">New site after a decade</h2><p class="ts-body-xl">One of the defining aspects of our agency is our optimal team size. We have discovered that maintaining a compact team of between 15 and 20 members allows us to achieve the best results for our clients and ourselves. By deliberately keeping our team size within this range, we ensure efficient collaboration, open communication, and seamless coordination.</p>'
 )
+
+const arrayData = ref(Array)
+
 const elements = computed(() => {
   const tempDiv = document.createElement('div')
   tempDiv.innerHTML = data.value

@@ -63,12 +63,14 @@ const getTransform = idx => {
   }
 }
 
+const staggerSpeed = 0.02
+
 watch(
   () => props.start,
   () => {
     if (props.start) {
       const { pause } = useRafFn(() => {
-        progress.value = parseFloat(progress.value) + 0.01
+        progress.value = parseFloat(progress.value) + staggerSpeed
         if (progress.value >= 1) {
           pause()
           progress.value = 1
@@ -84,15 +86,32 @@ watch(
 <template>
   <div>
     <div class="container">
-      <div
+      <!-- <div
         class="real"
         ref="textRef"
-        :style="{ opacity: progress < 1 ? 0 : null }"
+        :style="{ opacity: progress < 1 ? 0.2 : null }"
         v-html="data"
-      ></div>
+      ></div> -->
+      <div class="real" ref="textRef" style="opacity: 0.2" v-html="data"></div>
 
-      <div
+      <!-- <div
         v-if="progress !== '0' && progress < '1'"
+        class="mask"
+        :style="{
+          position: 'absolute',
+          top: 0,
+          margin: 0,
+          ...getMask(idx),
+          ...getTransform(idx),
+          fontSize: fontSize,
+          lineHeight: lineHeight,
+        }"
+        :key="line"
+        v-for="(line, idx) in lineAmount"
+        v-html="data"
+      ></div> -->
+      <div
+        v-if="progress !== '0'"
         class="mask"
         :style="{
           position: 'absolute',
