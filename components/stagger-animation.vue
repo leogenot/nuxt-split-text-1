@@ -130,4 +130,8 @@ watch(
   </div>
 </template>
 
-<style></style>
+<style>
+.container {
+  position: relative;
+}
+</style>
