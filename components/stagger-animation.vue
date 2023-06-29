@@ -87,12 +87,12 @@ watch(
       <div
         class="real"
         ref="textRef"
-        :style="{ opacity: progress !== '1' ? 0 : null }"
+        :style="{ opacity: progress < 1 ? 0 : null }"
         v-html="data"
       ></div>
 
       <div
-        v-if="progress !== '0' && progress !== '1'"
+        v-if="progress !== '0' && progress < '1'"
         class="mask"
         :style="{
           position: 'absolute',
