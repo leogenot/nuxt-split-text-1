@@ -102,7 +102,6 @@ const target = ref(null)
 const targetIsVisible = ref(false)
 useIntersectionObserver(target, ([{ isIntersecting }]) => {
   targetIsVisible.value = isIntersecting
-  console.log(isIntersecting)
 })
 
 watch(
